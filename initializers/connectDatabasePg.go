@@ -6,6 +6,7 @@ import (
 	"os"
 
 	_ "github.com/lib/pq"
+	"github.com/redianmf/transportation-ticketing-app/database"
 )
 
 var (
@@ -25,6 +26,8 @@ func ConnectDatabasePg() {
 	} else {
 		fmt.Println("DB Connection Success")
 	}
+
+	database.DbMigrate(DB)
 
 	defer DB.Close()
 }
