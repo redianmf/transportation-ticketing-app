@@ -59,7 +59,6 @@ func UpdateWalletByUserId(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
 		"result": "Success top up wallet",
-		"data":   wallet,
 	})
 
 }
