@@ -10,6 +10,8 @@ type Transaction struct {
 	Type                 string    `json:"type"`
 	Status               string    `json:"status"`
 	Amount               int       `json:"amount"`
+	StartPoint           int       `json:"start_point"`
+	EndPoint             int       `json:"end_point"`
 	CreatedAt            time.Time `json:"created_at"`
 	UpdatedAt            time.Time `json:"updated_at"`
 }

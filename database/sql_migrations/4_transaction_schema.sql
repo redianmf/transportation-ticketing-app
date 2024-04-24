@@ -9,6 +9,8 @@ CREATE TABLE transactions (
     type VARCHAR(20),
     status VARCHAR(10),
     amount INT,
+    start_point INT,
+    end_point INT,
     created_at TIMESTAMP,
     updated_at TIMESTAMP,
     PRIMARY KEY(id),
