@@ -6,14 +6,15 @@ import (
 	"github.com/redianmf/transportation-ticketing-app/domain"
 )
 
-func InsertUser(db *sql.DB, user domain.User) (err error) {
+func InsertUser(db *sql.DB, user domain.User) (userId int, err error) {
 	sql := `
 	INSERT INTO users (username, email, password, birth_date, created_at, updated_at)
 	VALUES ($1, $2, $3, $4, $5, $6)
+	RETURNING id
 	`
-	errs := db.QueryRow(sql, user.Username, user.Email, user.Password, user.BirthDate, user.CreatedAt, user.UpdatedAt)
+	err = db.QueryRow(sql, user.Username, user.Email, user.Password, user.BirthDate, user.CreatedAt, user.UpdatedAt).Scan(&userId)
 
-	return errs.Err()
+	return
 }
 
 func GetUserByEmail(db *sql.DB, user domain.User) (result domain.User, err error) {

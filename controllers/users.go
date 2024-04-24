@@ -54,7 +54,22 @@ func Register(c *gin.Context) {
 	}
 
 	// Create User
-	err = repository.InsertUser(database.DbConnection, user)
+	userId, err := repository.InsertUser(database.DbConnection, user)
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
+			"error": "Cannot create user",
+		})
+		return
+	}
+
+	var wallet = domain.Wallet{
+		UserId:    userId,
+		Amount:    0,
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
+	}
+
+	err = repository.InsertWallet(database.DbConnection, wallet)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
 			"error": "Cannot create user",
@@ -107,7 +122,7 @@ func Login(c *gin.Context) {
 
 	// Generate JWT
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"sub": user.ID,
+		"sub": existingUser.ID,
 		"exp": time.Now().Add(time.Hour * 3).Unix(),
 	})
 

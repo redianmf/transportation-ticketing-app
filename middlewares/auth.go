@@ -40,7 +40,8 @@ func ValidateAuth(c *gin.Context) {
 
 	}
 
-	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
+	claims, ok := token.Claims.(jwt.MapClaims)
+	if ok && token.Valid {
 		// Check expire
 		if float64(time.Now().Unix()) > claims["exp"].(float64) {
 			c.AbortWithStatus(http.StatusUnauthorized)
@@ -60,6 +61,7 @@ func ValidateAuth(c *gin.Context) {
 		c.AbortWithStatus(http.StatusUnauthorized)
 	}
 
+	c.Set("userId", int(claims["sub"].(float64)))
 	c.Next()
 }
 
