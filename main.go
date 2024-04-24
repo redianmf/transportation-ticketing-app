@@ -25,5 +25,5 @@ func main() {
 	router.GET("/wallet", middlewares.ValidateAuth, controllers.GetWalletByUserId)
 	router.PATCH("/wallet", middlewares.ValidateAuth, controllers.UpdateWalletByUserId)
 
-	router.Run(":8080")
+	router.Run("localhost:8080")
 }
