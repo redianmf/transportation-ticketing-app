@@ -32,5 +32,8 @@ func main() {
 	router.PATCH("/transportation-modes/:id", middlewares.ValidateAuth, controllers.UpdateTransportationMode)
 	router.DELETE("/transportation-modes/:id", middlewares.ValidateAuth, controllers.DeleteTransportationMode)
 
+	// Transactions
+	router.POST("/transactions/:transportationModeId/:pointId", middlewares.ValidateAuth, controllers.TransactionGate)
+
 	router.Run("localhost:8080")
 }
