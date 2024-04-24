@@ -28,6 +28,4 @@ func ConnectDatabasePg() {
 	}
 
 	database.DbMigrate(DB)
-
-	defer DB.Close()
 }
