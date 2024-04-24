@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/gin-gonic/gin"
 	"github.com/redianmf/transportation-ticketing-app/controllers"
 	"github.com/redianmf/transportation-ticketing-app/initializers"
@@ -35,5 +37,5 @@ func main() {
 	// Transactions
 	router.POST("/transactions/:transportationModeId/:pointId", middlewares.ValidateAuth, controllers.TransactionGate)
 
-	router.Run("localhost:8080")
+	router.Run(":" + os.Getenv("PORT"))
 }
