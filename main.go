@@ -25,5 +25,12 @@ func main() {
 	router.GET("/wallet", middlewares.ValidateAuth, controllers.GetWalletByUserId)
 	router.PATCH("/wallet", middlewares.ValidateAuth, controllers.UpdateWalletByUserId)
 
+	// Transportation Modes
+	router.GET("/transportation-modes", middlewares.ValidateAuth, controllers.GetAllTransportationMode)
+	router.GET("/transportation-modes/:id", middlewares.ValidateAuth, controllers.GetTransportationModeById)
+	router.POST("/transportation-modes", middlewares.ValidateAuth, controllers.InsertTransportationMode)
+	router.PATCH("/transportation-modes/:id", middlewares.ValidateAuth, controllers.UpdateTransportationMode)
+	router.DELETE("/transportation-modes/:id", middlewares.ValidateAuth, controllers.DeleteTransportationMode)
+
 	router.Run("localhost:8080")
 }
