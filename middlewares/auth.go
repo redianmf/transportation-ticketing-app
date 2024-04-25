@@ -22,6 +22,7 @@ func ValidateAuth(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
 			"error": err.Error(),
 		})
+		return
 	}
 
 	// Decode JWT
@@ -37,7 +38,7 @@ func ValidateAuth(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
 			"error": "Invalid token",
 		})
-
+		return
 	}
 
 	claims, ok := token.Claims.(jwt.MapClaims)
