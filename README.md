@@ -12,10 +12,10 @@ This app uses JWT for authentication
 POST /login
 ```
 
-| Parameter  | Type      | Description  |
-| :--------- | :-------- | :----------- |
-| `email`    | `string`  | **Required** |
-| `password` | `integer` | **Required** |
+| Parameter  | Type     | Description  |
+| :--------- | :------- | :----------- |
+| `email`    | `string` | **Required** |
+| `password` | `string` | **Required** |
 
 #### Register
 
